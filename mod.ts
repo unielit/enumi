@@ -11,6 +11,12 @@ export type Enumeration<TCases extends string[]> = EnumerationObject<TCases> &
 export type EnumerationValue<TEnumeration extends Enumeration<[]>> =
   RecordValues<Omit<TEnumeration, typeof Symbol.iterator>>;
 
+/**
+ * Creates an enumeration object from a list of string cases. Automatically
+ * removes duplicates and generates PascalCase keys for use as an enum-like object.
+ * @param cases The array of case strings in kebab-case, camelCase, or PascalCase.
+ * @returns The object with PascalCase keys and original case strings as values.
+ */
 export function enumi<TCases extends string[]>(
   ...cases: TCases
 ): Enumeration<TCases> {
